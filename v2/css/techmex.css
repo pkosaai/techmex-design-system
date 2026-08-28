@@ -25,24 +25,32 @@
 
   Variable NAMES are unchanged from v1.1 on purpose: any page that already
   copied `css/techmex.css` and referenced `var(--tmx-green)`, etc. picks up
-  the new palette automatically, no markup changes required.
+  the new palette automatically, no markup changes required. ONE exception:
+  `--tmx-teal` is a NEW token (v1.1 had no teal, only cyan) — added
+  2026-08-28 per Héctor's exact reference palette ("Casa TechMex" swatch
+  sheet), which specifies Cyan (#00C8C8, "bridge color") and Teal (#00BFAE,
+  "connection / transition") as two DISTINCT colors, not one. An earlier
+  draft of this file collapsed them into a single --tmx-cyan value — caught
+  and fixed before anything shipped to the board.
 */
 :root {
   /* Brand palette */
   --tmx-green:      #32b44a;  /* Primary Green — logo-accurate, accents/CTAs/highlights */
   --tmx-blue:       #0063ff;  /* Primary Blue — large text / icons only */
-  --tmx-cyan:       #00bfae;  /* Primary Teal — gradients, hovers, links */
+  --tmx-cyan:       #00c8c8;  /* Cyan — bridge color: gradients, hovers, links */
+  --tmx-teal:       #00bfae;  /* Teal — connection/transition accent, distinct from Cyan */
   --tmx-dark:       #080a0a;  /* Base background */
   --tmx-gray:       #161a1b;  /* Cards / surfaces */
-  --tmx-muted:      #8C8C8C;  /* Secondary text */
+  --tmx-muted:      #8C8C8C;  /* Secondary text ("Silver") */
   --tmx-success:    #13bf00;  /* Success states */
   --tmx-electric:   #18b600;  /* Electric Green accent — sparing use: hover glow, success flash. Never a fill. */
   --tmx-logo-green: var(--tmx-green); /* Alias — v1.1 kept these as two tokens; v2 is one color, both names still work. */
   --tmx-logo-blue:  #4068b1;  /* Support: gradient blue end, decorative */
   --tmx-blue-a11y:  #82abff;  /* Accessible blue for small text/links */
 
-  /* Gradients (always green -> teal -> blue, the logo's direction) */
-  --tmx-grad:    linear-gradient(90deg, var(--tmx-green), var(--tmx-cyan), var(--tmx-blue));
+  /* Gradients — Héctor's reference specifies Blue -> Cyan -> Green exactly
+     (#0063FF -> #00C8C8 -> #32B44A) as "Recommended brand gradient". */
+  --tmx-grad:    linear-gradient(90deg, var(--tmx-blue), var(--tmx-cyan), var(--tmx-green));
   --tmx-grad-ui: linear-gradient(135deg, var(--tmx-logo-green), var(--tmx-logo-blue));
 
   /* Type */
@@ -238,8 +246,10 @@ body::before {
     conic-gradient(from var(--tmx-angle), var(--tmx-green), var(--tmx-blue), var(--tmx-cyan), var(--tmx-green)) border-box;
   animation: tmx-rotate 4s linear infinite;
 }
-/* CTA glow — reserve for hovers of key CTAs, max one per screen */
-.tmx-glow:hover { box-shadow: 0 0 20px rgba(35,247,178,0.4), 0 0 40px rgba(35,247,178,0.15); }
+/* CTA glow — reserve for hovers of key CTAs, max one per screen.
+   Uses Electric Green (#18B600 = rgb(24,182,0)) — the reference palette's
+   own "sparing accent: hover glow, success flash" color, not a fill. */
+.tmx-glow:hover { box-shadow: 0 0 20px rgba(24,182,0,0.4), 0 0 40px rgba(24,182,0,0.15); }
 
 /* ---------- 09 · GRAPHIC DETAILS ---------- */
 /* Circuit corner (place inside a position:relative container) */
