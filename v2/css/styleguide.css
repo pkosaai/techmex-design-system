@@ -11,7 +11,7 @@
 .sg-logo { display: flex; align-items: center; gap: 10px; }
 .sg-logo img { height: 26px; width: auto; display: block; }
 .sg-logo small { font: 500 10px var(--tmx-font-mono); letter-spacing: 3px; color: var(--tmx-muted); }
-.sg-header nav a { font: 500 12px var(--tmx-font-disp); color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 18px; }
+.sg-header nav a { font: 600 12px var(--tmx-font-disp); color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 18px; }
 .sg-header nav a:hover { color: #fff; }
 .sg-section { padding: 72px 0 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .sg-section > .sg-wrap > p.tmx-body { max-width: 720px; margin-top: 12px; }
