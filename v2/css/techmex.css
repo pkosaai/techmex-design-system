@@ -6,12 +6,12 @@
    Requires the Google Fonts link (Inter, Space Grotesk,
    JetBrains Mono) and — for hexagons — the shared SVG <defs>
    block (#tmx-hex-grad, #tmx-hex-glow) once per page.
-   v1.1 · August 2026 · techmexaustin.org
+   v2.0 · August 2026 · techmexaustin.org
    ============================================================ */
 
 /* ---------- 01 · DESIGN TOKENS ---------- */
 /*
-  v2.0 — BLUE → TEAL → GREEN, logo-derived (August 2026).
+  v2.0 — BLUE → CYAN → GREEN, logo-derived (August 2026).
 
   Board/design feedback on v1.1: the mint-neon Primary Green (#23F7B2) read
   as "generic startup", not "technological, architectural, dimensional" like
@@ -123,7 +123,7 @@ body::before {
   border-radius: 0; /* the identity is angular — never round corners */
   transition: background 0.3s ease;
 }
-.tmx-btn:hover { background: #2a9e40; }
+.tmx-btn:hover { background: var(--tmx-electric); }
 /* Accent bar floating above (quotes the wordmark's double line) */
 .tmx-btn::before {
   content: ""; position: absolute; top: -6px; left: 0; height: 4px; width: 100%;
@@ -232,7 +232,7 @@ body::before {
 .tmx-card p { margin-top: 8px; font-size: 14px; color: rgba(255,255,255,0.62); }
 /* Glassmorphism variant */
 .tmx-glass {
-  background: rgba(32,32,32,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  background: rgba(22,26,27,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.08); padding: 28px;
 }
 /* Animated gradient border (Chromium: @property; falls back to static gradient) */
@@ -249,7 +249,7 @@ body::before {
 /* CTA glow — reserve for hovers of key CTAs, max one per screen.
    Uses Electric Green (#18B600 = rgb(24,182,0)) — the reference palette's
    own "sparing accent: hover glow, success flash" color, not a fill. */
-.tmx-glow:hover { box-shadow: 0 0 20px rgba(24,182,0,0.4), 0 0 40px rgba(24,182,0,0.15); }
+.tmx-glow:hover { box-shadow: 0 0 20px rgba(24,182,0,0.4), 0 0 40px rgba(24,182,0,0.15); } /* rgba() kept literal — box-shadow doesn't accept var() inside its alpha channel reliably across engines; value = var(--tmx-electric) #18B600 */
 
 /* ---------- 09 · GRAPHIC DETAILS ---------- */
 /* Circuit corner (place inside a position:relative container) */

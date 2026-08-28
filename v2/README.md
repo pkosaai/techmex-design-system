@@ -17,6 +17,7 @@ design-system/
     ├── techmex-logo-header.svg      Full horizontal (6.2:1) — heroes, headers
     ├── techmex-logo-condensed.svg   Condensed (3.4:1) — navbars, footers
     ├── techmex-logo-vertical.svg    Square (1:1) — avatars, social, favicon
+    ├── casa-techmex-logo.png        Casa TechMex event mark (898×1000, transparent) — festival hero, save-the-date, social
     └── techmex-logo-email.png       1600×260 transparent PNG — email / no-SVG
 ```
 

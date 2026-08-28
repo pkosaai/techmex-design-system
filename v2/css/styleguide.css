@@ -6,7 +6,7 @@
    ============================================================ */
 
 .sg-wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
-.sg-header { position: sticky; top: 0; z-index: 50; background: rgba(10,10,10,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sg-header { position: sticky; top: 0; z-index: 50; background: rgba(8,10,10,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.1); }
 .sg-header .sg-wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
 .sg-logo { display: flex; align-items: center; gap: 10px; }
 .sg-logo img { height: 26px; width: auto; display: block; }
