@@ -224,7 +224,7 @@ body::before {
 /* ---------- 08 · CARDS ---------- */
 .tmx-card {
   border: 1px solid rgba(255,255,255,0.1); border-top: 2px solid var(--tmx-logo-green);
-  background: #161616; padding: 28px; transition: border-color 0.3s ease;
+  background: var(--tmx-gray); padding: 28px; transition: border-color 0.3s ease;
 }
 .tmx-card:hover { border-color: rgba(50,180,74,0.4); border-top-color: var(--tmx-logo-green); }
 .tmx-card .tmx-kicker { font-size: 11px; }
