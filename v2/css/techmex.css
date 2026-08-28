@@ -10,20 +10,38 @@
    ============================================================ */
 
 /* ---------- 01 · DESIGN TOKENS ---------- */
+/*
+  v2.0 — BLUE → TEAL → GREEN, logo-derived (August 2026).
+
+  Board/design feedback on v1.1: the mint-neon Primary Green (#23F7B2) read
+  as "generic startup", not "technological, architectural, dimensional" like
+  the logo. Resolution: retire the neon mint. What v1.1 called
+  `--tmx-logo-green` (#32B44A — always logo-accurate, never neon) is
+  PROMOTED to Primary Green. `--tmx-cyan` shifts from a bright aqua to a
+  deeper teal that reads as a bridge color, not a highlighter. Dark/Surface
+  darken slightly for more contrast headroom. A new `--tmx-electric` token
+  covers the rare case that still wants a bright, saturated green (glow on
+  a primary CTA hover, a success flash) — used sparingly, never as a fill.
+
+  Variable NAMES are unchanged from v1.1 on purpose: any page that already
+  copied `css/techmex.css` and referenced `var(--tmx-green)`, etc. picks up
+  the new palette automatically, no markup changes required.
+*/
 :root {
   /* Brand palette */
-  --tmx-green:      #23f7b2;  /* Primary Green — accents, CTAs, highlights */
+  --tmx-green:      #32b44a;  /* Primary Green — logo-accurate, accents/CTAs/highlights */
   --tmx-blue:       #0063ff;  /* Primary Blue — large text / icons only */
-  --tmx-cyan:       #00C8C8;  /* Cyan — gradients, hovers, links */
-  --tmx-dark:       #0A0A0A;  /* Base background */
-  --tmx-gray:       #202020;  /* Cards / surfaces */
+  --tmx-cyan:       #00bfae;  /* Primary Teal — gradients, hovers, links */
+  --tmx-dark:       #080a0a;  /* Base background */
+  --tmx-gray:       #161a1b;  /* Cards / surfaces */
   --tmx-muted:      #8C8C8C;  /* Secondary text */
   --tmx-success:    #13bf00;  /* Success states */
-  --tmx-logo-green: #32b44a;  /* Support: buttons, hex borders */
+  --tmx-electric:   #18b600;  /* Electric Green accent — sparing use: hover glow, success flash. Never a fill. */
+  --tmx-logo-green: var(--tmx-green); /* Alias — v1.1 kept these as two tokens; v2 is one color, both names still work. */
   --tmx-logo-blue:  #4068b1;  /* Support: gradient blue end, decorative */
   --tmx-blue-a11y:  #82abff;  /* Accessible blue for small text/links */
 
-  /* Gradients (always green -> blue, the logo's direction) */
+  /* Gradients (always green -> teal -> blue, the logo's direction) */
   --tmx-grad:    linear-gradient(90deg, var(--tmx-green), var(--tmx-cyan), var(--tmx-blue));
   --tmx-grad-ui: linear-gradient(135deg, var(--tmx-logo-green), var(--tmx-logo-blue));
 
@@ -56,14 +74,29 @@ body::before {
 .tmx-logo--hero   { height: 72px; }
 
 /* ---------- 03 · TYPOGRAPHY ---------- */
-.tmx-display { font: 900 clamp(40px,6vw,72px)/0.95 var(--tmx-font-sans); letter-spacing: -0.03em; }
-.tmx-h1      { font: 800 clamp(30px,4vw,48px)/1.1  var(--tmx-font-sans); letter-spacing: -0.02em; }
-.tmx-h2      { font: 700 clamp(26px,3vw,36px)/1.15 var(--tmx-font-sans); }
-.tmx-h3      { font: 700 clamp(18px,2vw,24px)/1.3  var(--tmx-font-disp); }
-.tmx-body    { font: 400 16px/1.6 var(--tmx-font-sans); color: rgba(255,255,255,0.72); }
+/*
+  v2.0 — typography COMPLEMENTS the logo, doesn't imitate it. The logo's
+  letterforms are already the brand's futuristic/architectural signal; if the
+  UI type tried to match that (a display face, sharp angles, all-caps
+  everywhere) it would compete with the logo instead of supporting it. So the
+  UI type stays a clean, sophisticated grotesk system — closer to a
+  contemporary tech publication (Stripe, Vercel, Linear) than a cyberpunk or
+  generic-startup treatment. Two concrete changes from v1.1:
+    1. Bold/black weights (800–900) are reserved for `.tmx-display` ONLY —
+       one true hero headline per page. `.tmx-h1`/`.tmx-h2` step down to
+       700/600 so section headings read as confident, not shouted.
+    2. Space Grotesk (`--tmx-font-disp`) drops from 700 to 500–600 wherever
+       it's used as a UI voice (nav, buttons, kickers) — it's the "signal"
+       accent typeface, not a second display face. Readability > loudness.
+*/
+.tmx-display { font: 800 clamp(40px,6vw,68px)/1.0  var(--tmx-font-sans); letter-spacing: -0.02em; }
+.tmx-h1      { font: 700 clamp(28px,3.6vw,44px)/1.15 var(--tmx-font-sans); letter-spacing: -0.015em; }
+.tmx-h2      { font: 600 clamp(24px,2.8vw,32px)/1.2 var(--tmx-font-sans); }
+.tmx-h3      { font: 600 clamp(18px,2vw,22px)/1.35  var(--tmx-font-disp); }
+.tmx-body    { font: 400 16px/1.65 var(--tmx-font-sans); color: rgba(255,255,255,0.74); }
 .tmx-small   { font: 400 13px/1.6 var(--tmx-font-sans); color: rgba(255,255,255,0.62); }
 .tmx-kicker  {
-  font: 500 13px var(--tmx-font-mono); letter-spacing: 0.22em;
+  font: 500 13px var(--tmx-font-mono); letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--tmx-logo-green);
 }
 /* Gradient text — short headlines only, never paragraphs */

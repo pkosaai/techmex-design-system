@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TechMex Design System</title>
+<title>TechMex Design System v2</title>
 <link rel="icon" href="images/techmex-logo-vertical.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -44,9 +44,10 @@
 <!-- ============ INTRO ============ -->
 <section class="sg-section" style="padding-top:96px" id="top">
   <div class="sg-wrap">
-    <div class="tmx-kicker">TechMex Austin · v1.1 · August 2026</div>
+    <div class="tmx-kicker">TechMex Austin · v2.0 · August 2026</div>
     <h1 class="tmx-display" style="margin-top:14px">Design <span class="tmx-grad-text">System</span></h1>
     <p class="tmx-body" style="margin-top:18px">Every element of techmexaustin.org, live and copy-ready. Take <code style="font-family:var(--tmx-font-mono);color:var(--tmx-green)">css/techmex.css</code> and <code style="font-family:var(--tmx-font-mono);color:var(--tmx-green)">js/techmex.js</code> (plus the logos in <code style="font-family:var(--tmx-font-mono);color:var(--tmx-green)">images/</code>) to any HTML platform, then copy any component's markup below (View code) and it works as-is. No frameworks, no build step. The <code style="font-family:var(--tmx-font-mono)">styleguide.*</code> files are this page's chrome only.</p>
+    <div class="sg-note"><strong>What changed in v2.0:</strong> the palette moves from a mint-neon primary to a blue → teal → green spectrum derived directly from the logo's own gradient — technological and dimensional, not generic-startup neon. Typography now complements the logo's futuristic letterforms instead of competing with them: bold/black weights are reserved for one hero headline per page, section headings step down to 700/600, and Space Grotesk (the "signal" typeface) drops from 700 to 500–600 wherever it's UI voice — closer to a contemporary tech publication than cyberpunk or generic startup. See <a href="#color" style="color:var(--tmx-cyan)">Color</a> and <a href="#type" style="color:var(--tmx-cyan)">Type families</a> below for the full before/after.</div>
     <div class="sg-note">Package layout: <code>index.html</code> · <code>css/techmex.css</code> (portable system) · <code>css/styleguide.css</code> (page chrome) · <code>js/techmex.js</code> (counters + countdown) · <code>js/styleguide.js</code> (snippet viewer) · <code>images/</code> (logo files). Hexagons additionally need the hidden <code>&lt;svg&gt;&lt;defs&gt;</code> block (top of this page's <code>&lt;body&gt;</code>) <strong>once</strong> per page.</div>
   </div>
 </section>
@@ -102,22 +103,23 @@
   <div class="sg-wrap">
     <div class="tmx-kicker">02 · Branding — Color</div>
     <h2 class="tmx-h1">Color</h2>
-    <p class="tmx-body">Neon on black. Dark is the canvas (~62%), neon is accent (≤8%). All tokens are CSS custom properties on <code style="font-family:var(--tmx-font-mono)">:root</code> — see <code style="font-family:var(--tmx-font-mono)">css/techmex.css</code>.</p>
+    <p class="tmx-body">Blue → teal → green, derived directly from the logo's own gradient — technological and dimensional, on a near-black canvas. Dark is the canvas (~62%), color is accent (≤8%). All tokens are CSS custom properties on <code style="font-family:var(--tmx-font-mono)">:root</code> — see <code style="font-family:var(--tmx-font-mono)">css/techmex.css</code>.</p>
+    <div class="sg-note" style="margin-top:16px"><strong>Changed in v2.0:</strong> the mint-neon Primary Green (#23F7B2, "generic startup") is retired — the logo-accurate #32B44A (v1.1's <code>--tmx-logo-green</code>) is promoted to Primary Green. Cyan deepens to a Primary Teal (#00BFAE) that reads as a bridge color, not a highlighter. Dark and Surface both darken slightly (#080A0A / #161A1B) for more contrast headroom. A new Electric Green accent (#18B600) covers the rare case that still wants a bright, saturated flash — hover glows, success states — used sparingly, never as a fill. Variable NAMES are unchanged, so any page already built on v1.1 tokens picks up this palette automatically.</div>
     <div class="sg-swatches">
-      <div class="sg-swatch"><div class="chip" style="background:#23f7b2"></div><div class="meta"><b>Primary Green</b><code>--tmx-green · #23F7B2</code><i>Accents, CTAs, highlights. AA 14.2:1</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#32b44a"></div><div class="meta"><b>Primary Green</b><code>--tmx-green · #32B44A</code><i>Accents, CTAs, highlights. AA 7.3:1</i></div></div>
       <div class="sg-swatch"><div class="chip" style="background:#0063ff"></div><div class="meta"><b>Primary Blue</b><code>--tmx-blue · #0063FF</code><i>Large text/icons only (4.0:1)</i></div></div>
-      <div class="sg-swatch"><div class="chip" style="background:#00C8C8"></div><div class="meta"><b>Cyan</b><code>--tmx-cyan · #00C8C8</code><i>Gradients, hovers, links. AA 9.5:1</i></div></div>
-      <div class="sg-swatch"><div class="chip" style="background:#0A0A0A;border-bottom:1px solid rgba(255,255,255,0.1)"></div><div class="meta"><b>Dark</b><code>--tmx-dark · #0A0A0A</code><i>Base background</i></div></div>
-      <div class="sg-swatch"><div class="chip" style="background:#202020"></div><div class="meta"><b>Dark Gray</b><code>--tmx-gray · #202020</code><i>Cards and surfaces</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#00bfae"></div><div class="meta"><b>Primary Teal</b><code>--tmx-cyan · #00BFAE</code><i>Gradients, hovers, links. AA 8.1:1</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#18b600"></div><div class="meta"><b>Electric Green</b><code>--tmx-electric · #18B600</code><i>Sparing accent: hover glow, success flash. Never a fill.</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#080a0a;border-bottom:1px solid rgba(255,255,255,0.1)"></div><div class="meta"><b>Dark</b><code>--tmx-dark · #080A0A</code><i>Base background</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#161a1b"></div><div class="meta"><b>Surface</b><code>--tmx-gray · #161A1B</code><i>Cards and surfaces</i></div></div>
       <div class="sg-swatch"><div class="chip" style="background:#8C8C8C"></div><div class="meta"><b>Muted</b><code>--tmx-muted · #8C8C8C</code><i>Secondary text. AA 5.9:1</i></div></div>
-      <div class="sg-swatch"><div class="chip" style="background:#32b44a"></div><div class="meta"><b>Logo Green</b><code>--tmx-logo-green · #32B44A</code><i>Buttons, hex borders. AA 7.3:1</i></div></div>
       <div class="sg-swatch"><div class="chip" style="background:#4068b1"></div><div class="meta"><b>Logo Blue</b><code>--tmx-logo-blue · #4068B1</code><i>Gradient end, decorative (3.6:1)</i></div></div>
       <div class="sg-swatch"><div class="chip" style="background:#82abff"></div><div class="meta"><b>Accessible Blue</b><code>--tmx-blue-a11y · #82ABFF</code><i>Small blue links (AA)</i></div></div>
       <div class="sg-swatch"><div class="chip" style="background:#13bf00"></div><div class="meta"><b>Success</b><code>--tmx-success · #13BF00</code><i>Success states. AA 8.0:1</i></div></div>
-      <div class="sg-swatch"><div class="chip" style="background:linear-gradient(90deg,#23f7b2,#00C8C8,#0063ff)"></div><div class="meta"><b>Brand gradient</b><code>--tmx-grad</code><i>Wordmarks, short headlines</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:linear-gradient(90deg,#32b44a,#00bfae,#0063ff)"></div><div class="meta"><b>Brand gradient</b><code>--tmx-grad</code><i>Wordmarks, short headlines</i></div></div>
       <div class="sg-swatch"><div class="chip" style="background:linear-gradient(135deg,#32b44a,#4068b1)"></div><div class="meta"><b>UI gradient</b><code>--tmx-grad-ui</code><i>Hex borders, UI strokes</i></div></div>
     </div>
-    <div class="sg-note">Accessibility (WCAG 2.1 AA on #0A0A0A): body text never below <code>rgba(255,255,255,0.6)</code> (7.3:1). #0063FF and #4068B1 fail at normal size — use them for large/bold text and icons only; small blue links use <code>--tmx-blue-a11y</code>.</div>
+    <div class="sg-note">Accessibility (WCAG 2.1 AA on #080A0A): body text never below <code>rgba(255,255,255,0.6)</code> (7.3:1). #0063FF and #4068B1 fail at normal size — use them for large/bold text and icons only; small blue links use <code>--tmx-blue-a11y</code>.</div>
   </div>
 </section>
 
@@ -363,7 +365,7 @@
     </svg>
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center">
       <div class="sg-logo"><img src="images/techmex-logo-condensed.svg" alt="TechMex Austin"><small>AUSTIN</small></div>
-      <p class="tmx-small" style="font-family:var(--tmx-font-mono);font-size:11px">© 2026 TechMex Austin · techmexaustin.org · Design System v1.1</p>
+      <p class="tmx-small" style="font-family:var(--tmx-font-mono);font-size:11px">© 2026 TechMex Austin · techmexaustin.org · Design System v2.0</p>
     </div>
   </div>
 </footer>

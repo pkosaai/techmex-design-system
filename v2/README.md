@@ -1,4 +1,4 @@
-# TechMex Austin — Design System (v1.1)
+# TechMex Austin — Design System (v2.0)
 
 Living style guide for techmexaustin.org. Open `index.html` in a browser.
 
