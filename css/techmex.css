@@ -1,0 +1,224 @@
+/* ============================================================
+   TECHMEX AUSTIN — DESIGN SYSTEM · techmex.css
+   The portable stylesheet. Copy THIS file (plus js/techmex.js
+   for counters/countdown) into any HTML platform, then take
+   any component's markup from the style guide and it works.
+   Requires the Google Fonts link (Inter, Space Grotesk,
+   JetBrains Mono) and — for hexagons — the shared SVG <defs>
+   block (#tmx-hex-grad, #tmx-hex-glow) once per page.
+   v1.1 · August 2026 · techmexaustin.org
+   ============================================================ */
+
+/* ---------- 01 · DESIGN TOKENS ---------- */
+:root {
+  /* Brand palette */
+  --tmx-green:      #23f7b2;  /* Primary Green — accents, CTAs, highlights */
+  --tmx-blue:       #0063ff;  /* Primary Blue — large text / icons only */
+  --tmx-cyan:       #00C8C8;  /* Cyan — gradients, hovers, links */
+  --tmx-dark:       #0A0A0A;  /* Base background */
+  --tmx-gray:       #202020;  /* Cards / surfaces */
+  --tmx-muted:      #8C8C8C;  /* Secondary text */
+  --tmx-success:    #13bf00;  /* Success states */
+  --tmx-logo-green: #32b44a;  /* Support: buttons, hex borders */
+  --tmx-logo-blue:  #4068b1;  /* Support: gradient blue end, decorative */
+  --tmx-blue-a11y:  #82abff;  /* Accessible blue for small text/links */
+
+  /* Gradients (always green -> blue, the logo's direction) */
+  --tmx-grad:    linear-gradient(90deg, var(--tmx-green), var(--tmx-cyan), var(--tmx-blue));
+  --tmx-grad-ui: linear-gradient(135deg, var(--tmx-logo-green), var(--tmx-logo-blue));
+
+  /* Type */
+  --tmx-font-sans: "Inter", -apple-system, sans-serif;
+  --tmx-font-disp: "Space Grotesk", "Inter", sans-serif;
+  --tmx-font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--tmx-dark);
+  color: #fff;
+  font-family: var(--tmx-font-sans);
+  line-height: 1.6;
+}
+/* Grain texture over dark backgrounds (3.5% opacity fractal noise) */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ---------- 02 · LOGO ----------
+   SVG files live in images/ (header, condensed, vertical).
+   Set the height, let width follow. Dark backgrounds only. */
+.tmx-logo         { display: inline-block; height: 32px; width: auto; }
+.tmx-logo--sm     { height: 24px; }
+.tmx-logo--lg     { height: 48px; }
+.tmx-logo--hero   { height: 72px; }
+
+/* ---------- 03 · TYPOGRAPHY ---------- */
+.tmx-display { font: 900 clamp(40px,6vw,72px)/0.95 var(--tmx-font-sans); letter-spacing: -0.03em; }
+.tmx-h1      { font: 800 clamp(30px,4vw,48px)/1.1  var(--tmx-font-sans); letter-spacing: -0.02em; }
+.tmx-h2      { font: 700 clamp(26px,3vw,36px)/1.15 var(--tmx-font-sans); }
+.tmx-h3      { font: 700 clamp(18px,2vw,24px)/1.3  var(--tmx-font-disp); }
+.tmx-body    { font: 400 16px/1.6 var(--tmx-font-sans); color: rgba(255,255,255,0.72); }
+.tmx-small   { font: 400 13px/1.6 var(--tmx-font-sans); color: rgba(255,255,255,0.62); }
+.tmx-kicker  {
+  font: 500 13px var(--tmx-font-mono); letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--tmx-logo-green);
+}
+/* Gradient text — short headlines only, never paragraphs */
+.tmx-grad-text {
+  background: var(--tmx-grad);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+
+/* ---------- 04 · BUTTONS (double-line accent) ---------- */
+.tmx-btn {
+  position: relative; display: inline-block; margin-top: 7px; /* room for the floating bar */
+  padding: 12px 30px; border: 0; cursor: pointer; text-decoration: none;
+  font: 700 14px var(--tmx-font-disp);
+  background: var(--tmx-logo-green); color: #fff;
+  border-radius: 0; /* the identity is angular — never round corners */
+  transition: background 0.3s ease;
+}
+.tmx-btn:hover { background: #2a9e40; }
+/* Accent bar floating above (quotes the wordmark's double line) */
+.tmx-btn::before {
+  content: ""; position: absolute; top: -6px; left: 0; height: 4px; width: 100%;
+  background: inherit; transition: background 0.4s ease;
+}
+/* Gradient fill sweeps the bar left -> right on hover */
+.tmx-btn::after {
+  content: ""; position: absolute; top: -6px; left: 0; height: 4px; width: 0%;
+  background: linear-gradient(90deg, var(--tmx-logo-green), var(--tmx-cyan), var(--tmx-logo-blue));
+  transition: width 0.5s ease;
+}
+.tmx-btn:hover::after { width: 100%; }
+.tmx-btn--outline {
+  background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.85);
+}
+.tmx-btn--outline:hover { background: rgba(255,255,255,0.05); color: #fff; }
+.tmx-btn--outline::before { background: rgba(255,255,255,0.12); }
+
+/* ---------- 05 · HEXAGON ----------
+   Requires the shared SVG <defs> (#tmx-hex-grad, #tmx-hex-glow)
+   present ONCE per page — see the hidden <svg> right after <body>.
+   Geometry: 300x346 viewBox, point-up. The hex scales with width;
+   height = width x 1.1533. */
+.tmx-hex { position: relative; flex-shrink: 0; }
+.tmx-hex > svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.tmx-hex .hex-bg     { fill: rgba(255,255,255,0.01); transition: fill 0.7s ease; }
+.tmx-hex:hover .hex-bg { fill: rgba(50,180,74,0.03); }
+.tmx-hex .hex-border { stroke: rgba(255,255,255,0.06); stroke-width: 1.5; fill: none; transition: opacity 0.4s ease; }
+.tmx-hex:hover .hex-border { opacity: 0; }
+/* Gradient light travels the border on hover (stroke-dash trick) */
+.tmx-hex .hex-hover {
+  stroke: url(#tmx-hex-grad); stroke-width: 2; fill: none;
+  stroke-dasharray: 1200; stroke-dashoffset: 1200; opacity: 0;
+  filter: url(#tmx-hex-glow);
+  transition: stroke-dashoffset 1.5s ease-in-out, opacity 0.3s ease;
+}
+.tmx-hex:hover .hex-hover { stroke-dashoffset: 0; opacity: 1; }
+/* Corner nodes light up in sequence */
+.tmx-hex .hex-node { fill: rgba(255,255,255,0.1); transition: fill 0.5s ease; }
+.tmx-hex:hover .hex-node { fill: var(--tmx-logo-green); }
+.tmx-hex .hex-node:nth-of-type(2) { transition-delay: 0.08s; }
+.tmx-hex .hex-node:nth-of-type(3) { transition-delay: 0.16s; }
+.tmx-hex .hex-node:nth-of-type(4) { transition-delay: 0.24s; }
+.tmx-hex .hex-node:nth-of-type(5) { transition-delay: 0.32s; }
+.tmx-hex .hex-node:nth-of-type(6) { transition-delay: 0.40s; }
+/* Inner content — centered; text keeps normal brand scale */
+.tmx-hex .hex-content {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 0 36px;
+}
+.tmx-hex .hex-content h3 { font: 700 clamp(18px,2vw,24px)/1.2 var(--tmx-font-sans); letter-spacing: -0.01em; color: rgba(255,255,255,0.7); transition: color 0.5s ease; }
+.tmx-hex:hover .hex-content h3 { color: #fff; }
+.tmx-hex .hex-content p { margin-top: 10px; font: 400 13px/1.6 var(--tmx-font-sans); color: rgba(255,255,255,0.6); max-width: 200px; transition: color 0.5s ease; }
+.tmx-hex:hover .hex-content p { color: rgba(255,255,255,0.8); }
+.tmx-hex .hex-icon { color: rgba(255,255,255,0.5); margin-bottom: 14px; transition: color 0.5s ease; }
+.tmx-hex:hover .hex-icon { color: var(--tmx-logo-green); }
+/* Sizes (width x 1.1533 = height) */
+.tmx-hex--sm { width: 230px; height: 265px; }
+.tmx-hex--md { width: 300px; height: 346px; }
+.tmx-hex--lg { width: 340px; height: 392px; }
+.tmx-hex--xl { width: 380px; height: 438px; }
+/* Stat hexes: gradient number + tracked caps label */
+.tmx-hex .hex-value {
+  font: 800 clamp(36px,4vw,56px)/1 var(--tmx-font-sans); letter-spacing: -0.02em;
+  background: linear-gradient(180deg, var(--tmx-logo-green), var(--tmx-logo-blue));
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+  font-variant-numeric: tabular-nums;
+}
+.tmx-hex .hex-label {
+  margin-top: 12px; font: 500 12px var(--tmx-font-sans); letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.6);
+}
+
+/* ---------- 06 · HONEYCOMB FORMATIONS ----------
+   Alternate row counts (3-2-3, 2-3-2...). Rows nest via negative
+   top margin; centered offset rows interlock automatically.
+   --hex-overlap must match the hex size in use — it is the slant
+   height (21.7% of hex height) minus ~9px of separation:
+   sm: 48px · md: 66px · lg: 76px · xl: 86px */
+.tmx-honeycomb { display: flex; flex-direction: column; align-items: center; --hex-overlap: 48px; }
+.tmx-honeycomb--md { --hex-overlap: 66px; }
+.tmx-honeycomb--lg { --hex-overlap: 76px; }
+.tmx-honeycomb--xl { --hex-overlap: 86px; }
+.tmx-honeycomb__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.tmx-honeycomb__row + .tmx-honeycomb__row { margin-top: calc(var(--hex-overlap) * -1); }
+@media (max-width: 700px) { .tmx-honeycomb__row + .tmx-honeycomb__row { margin-top: 8px; } }
+
+/* ---------- 07 · COUNTDOWN HEX CELL (small, flat-top numbers) ---------- */
+.tmx-count { position: relative; width: 80px; height: 92px; }
+.tmx-count svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tmx-count .cnt {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.tmx-count .cnt b { font: 800 26px/1 var(--tmx-font-mono); color: #fff; font-variant-numeric: tabular-nums; }
+.tmx-count .cnt span { margin-top: 3px; font: 500 8px var(--tmx-font-sans); letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+/* ---------- 08 · CARDS ---------- */
+.tmx-card {
+  border: 1px solid rgba(255,255,255,0.1); border-top: 2px solid var(--tmx-logo-green);
+  background: #161616; padding: 28px; transition: border-color 0.3s ease;
+}
+.tmx-card:hover { border-color: rgba(50,180,74,0.4); border-top-color: var(--tmx-logo-green); }
+.tmx-card .tmx-kicker { font-size: 11px; }
+.tmx-card h3 { margin-top: 10px; font: 700 18px/1.35 var(--tmx-font-sans); }
+.tmx-card p { margin-top: 8px; font-size: 14px; color: rgba(255,255,255,0.62); }
+/* Glassmorphism variant */
+.tmx-glass {
+  background: rgba(32,32,32,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08); padding: 28px;
+}
+/* Animated gradient border (Chromium: @property; falls back to static gradient) */
+@property --tmx-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes tmx-rotate { to { --tmx-angle: 360deg; } }
+.tmx-grad-border {
+  --tmx-angle: 0deg;
+  border: 1px solid transparent; padding: 28px;
+  background:
+    linear-gradient(var(--tmx-gray), var(--tmx-gray)) padding-box,
+    conic-gradient(from var(--tmx-angle), var(--tmx-green), var(--tmx-blue), var(--tmx-cyan), var(--tmx-green)) border-box;
+  animation: tmx-rotate 4s linear infinite;
+}
+/* CTA glow — reserve for hovers of key CTAs, max one per screen */
+.tmx-glow:hover { box-shadow: 0 0 20px rgba(35,247,178,0.4), 0 0 40px rgba(35,247,178,0.15); }
+
+/* ---------- 09 · GRAPHIC DETAILS ---------- */
+/* Circuit corner (place inside a position:relative container) */
+.tmx-corner { position: absolute; top: 0; left: 0; }
+.tmx-corner--br { top: auto; left: auto; right: 0; bottom: 0; transform: rotate(180deg); }
+/* Stepped divider (full-width, quotes the pyramid steps) */
+.tmx-steps { display: block; width: 100%; }
+/* Inputs */
+.tmx-input {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  color: #fff; padding: 12px 14px; font: 400 14px var(--tmx-font-sans);
+  border-radius: 0; outline: none; width: 100%;
+}
+.tmx-input::placeholder { color: var(--tmx-muted); }
+.tmx-input:focus { border-color: rgba(50,180,74,0.5); }

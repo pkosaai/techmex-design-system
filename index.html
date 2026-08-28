@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TechMex Design System</title>
+<link rel="icon" href="images/techmex-logo-vertical.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- Portable system stylesheet — copy this file to your platform -->
+<link rel="stylesheet" href="css/techmex.css">
+<!-- Style-guide page chrome — do NOT copy -->
+<link rel="stylesheet" href="css/styleguide.css">
+</head>
+<body>
+
+<!-- REQUIRED ONCE PER PAGE: shared gradient + glow used by every hexagon -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="tmx-hex-grad" x1="0" y1="346" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#32b44a"/><stop offset="100%" stop-color="#4068b1"/>
+    </linearGradient>
+    <filter id="tmx-hex-glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ============ HEADER (navbar pattern) ============ -->
+<header class="sg-header">
+  <div class="sg-wrap">
+    <a class="sg-logo" href="#top" style="text-decoration:none">
+      <img src="images/techmex-logo-condensed.svg" alt="TechMex Austin">
+      <small>DESIGN SYSTEM</small>
+    </a>
+    <nav>
+      <a href="#logo">Logo</a><a href="#color">Color</a><a href="#type">Type</a><a href="#buttons">Buttons</a>
+      <a href="#hex">Hexagons</a><a href="#cards">Cards</a><a href="#details">Details</a><a href="#forms">Forms</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ INTRO ============ -->
+<section class="sg-section" style="padding-top:96px" id="top">
+  <div class="sg-wrap">
+    <div class="tmx-kicker">TechMex Austin · v1.1 · August 2026</div>
+    <h1 class="tmx-display" style="margin-top:14px">Design <span class="tmx-grad-text">System</span></h1>
+    <p class="tmx-body" style="margin-top:18px">Every element of techmexaustin.org, live and copy-ready. Take <code style="font-family:var(--tmx-font-mono);color:var(--tmx-green)">css/techmex.css</code> and <code style="font-family:var(--tmx-font-mono);color:var(--tmx-green)">js/techmex.js</code> (plus the logos in <code style="font-family:var(--tmx-font-mono);color:var(--tmx-green)">images/</code>) to any HTML platform, then copy any component's markup below (View code) and it works as-is. No frameworks, no build step. The <code style="font-family:var(--tmx-font-mono)">styleguide.*</code> files are this page's chrome only.</p>
+    <div class="sg-note">Package layout: <code>index.html</code> · <code>css/techmex.css</code> (portable system) · <code>css/styleguide.css</code> (page chrome) · <code>js/techmex.js</code> (counters + countdown) · <code>js/styleguide.js</code> (snippet viewer) · <code>images/</code> (logo files). Hexagons additionally need the hidden <code>&lt;svg&gt;&lt;defs&gt;</code> block (top of this page's <code>&lt;body&gt;</code>) <strong>once</strong> per page.</div>
+  </div>
+</section>
+
+<!-- ============ 01 LOGO ============ -->
+<section class="sg-section" id="logo">
+  <div class="sg-wrap">
+    <div class="tmx-kicker">01 · Branding — Logo</div>
+    <h2 class="tmx-h1">The logo</h2>
+    <p class="tmx-body">Three official lockups, all built from the same gradient wordmark (green → cyan → blue, the brand's signature direction) with the circuit-node hex mark. Always the original SVG files — never rebuilt in HTML text, never recolored, outlined, shadowed, rotated, or stretched. Dark backgrounds only.</p>
+
+    <div class="sg-logo-grid">
+      <div class="sg-logo-tile">
+        <div class="stage"><img src="images/techmex-logo-header.svg" alt="TechMex logo — full horizontal" style="width:100%;max-width:360px"></div>
+        <div class="meta"><b>Full horizontal</b><code>images/techmex-logo-header.svg</code><i>Primary lockup — heroes, headers, documents. Min height 20px.</i></div>
+      </div>
+      <div class="sg-logo-tile">
+        <div class="stage"><img src="images/techmex-logo-condensed.svg" alt="TechMex logo — condensed" style="width:100%;max-width:220px"></div>
+        <div class="meta"><b>Condensed</b><code>images/techmex-logo-condensed.svg</code><i>Tight spaces — navbars, footers, badges. Min height 20px.</i></div>
+      </div>
+      <div class="sg-logo-tile">
+        <div class="stage"><img src="images/techmex-logo-vertical.svg" alt="TechMex logo — vertical" style="width:120px"></div>
+        <div class="meta"><b>Vertical (square)</b><code>images/techmex-logo-vertical.svg</code><i>Avatars, social profiles, favicons, square placements. Min height 48px.</i></div>
+      </div>
+      <div class="sg-logo-tile">
+        <div class="stage"><img src="images/techmex-logo-email.png" alt="TechMex logo — email PNG" style="width:100%;max-width:280px"></div>
+        <div class="meta"><b>Email / raster PNG</b><code>images/techmex-logo-email.png</code><i>1600×260 transparent PNG for email clients and platforms without SVG support.</i></div>
+      </div>
+    </div>
+
+    <div class="sg-note"><strong>Usage rules.</strong> Scale by height and let width follow (helpers: <code>.tmx-logo</code>, <code>--sm --lg --hero</code>). Clear space around the logo ≥ 50% of the hex mark's height. Place only on <code>--tmx-dark</code> or photography darkened to ≥ 50%. Never: light backgrounds, recoloring, single-color fills, drop shadows, containers with rounded corners.</div>
+
+    <table class="sg-files">
+      <thead><tr><th>File</th><th>Format · ratio</th><th>Use for</th><th></th></tr></thead>
+      <tbody>
+        <tr><td><code>techmex-logo-header.svg</code></td><td>SVG · 6.2 : 1</td><td>Heroes, page headers, print</td><td><a href="images/techmex-logo-header.svg" download>Download</a></td></tr>
+        <tr><td><code>techmex-logo-condensed.svg</code></td><td>SVG · 3.4 : 1</td><td>Navbars, footers, badges</td><td><a href="images/techmex-logo-condensed.svg" download>Download</a></td></tr>
+        <tr><td><code>techmex-logo-vertical.svg</code></td><td>SVG · 1 : 1</td><td>Avatars, social, favicons</td><td><a href="images/techmex-logo-vertical.svg" download>Download</a></td></tr>
+        <tr><td><code>techmex-logo-email.png</code></td><td>PNG · 1600×260 · transparent</td><td>Email, no-SVG platforms</td><td><a href="images/techmex-logo-email.png" download>Download</a></td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="tmx-h3" style="margin-top:48px">In markup</h3>
+    <div class="sg-demo center" data-snippet>
+      <img class="tmx-logo tmx-logo--lg" src="images/techmex-logo-header.svg" alt="TechMex Austin">
+    </div>
+    <details class="sg-code"><summary>▸ View code</summary><button class="sg-copy">COPY</button><pre></pre></details>
+  </div>
+</section>
+
+<!-- ============ 02 COLOR ============ -->
+<section class="sg-section" id="color">
+  <div class="sg-wrap">
+    <div class="tmx-kicker">02 · Branding — Color</div>
+    <h2 class="tmx-h1">Color</h2>
+    <p class="tmx-body">Neon on black. Dark is the canvas (~62%), neon is accent (≤8%). All tokens are CSS custom properties on <code style="font-family:var(--tmx-font-mono)">:root</code> — see <code style="font-family:var(--tmx-font-mono)">css/techmex.css</code>.</p>
+    <div class="sg-swatches">
+      <div class="sg-swatch"><div class="chip" style="background:#23f7b2"></div><div class="meta"><b>Primary Green</b><code>--tmx-green · #23F7B2</code><i>Accents, CTAs, highlights. AA 14.2:1</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#0063ff"></div><div class="meta"><b>Primary Blue</b><code>--tmx-blue · #0063FF</code><i>Large text/icons only (4.0:1)</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#00C8C8"></div><div class="meta"><b>Cyan</b><code>--tmx-cyan · #00C8C8</code><i>Gradients, hovers, links. AA 9.5:1</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#0A0A0A;border-bottom:1px solid rgba(255,255,255,0.1)"></div><div class="meta"><b>Dark</b><code>--tmx-dark · #0A0A0A</code><i>Base background</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#202020"></div><div class="meta"><b>Dark Gray</b><code>--tmx-gray · #202020</code><i>Cards and surfaces</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#8C8C8C"></div><div class="meta"><b>Muted</b><code>--tmx-muted · #8C8C8C</code><i>Secondary text. AA 5.9:1</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#32b44a"></div><div class="meta"><b>Logo Green</b><code>--tmx-logo-green · #32B44A</code><i>Buttons, hex borders. AA 7.3:1</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#4068b1"></div><div class="meta"><b>Logo Blue</b><code>--tmx-logo-blue · #4068B1</code><i>Gradient end, decorative (3.6:1)</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#82abff"></div><div class="meta"><b>Accessible Blue</b><code>--tmx-blue-a11y · #82ABFF</code><i>Small blue links (AA)</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:#13bf00"></div><div class="meta"><b>Success</b><code>--tmx-success · #13BF00</code><i>Success states. AA 8.0:1</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:linear-gradient(90deg,#23f7b2,#00C8C8,#0063ff)"></div><div class="meta"><b>Brand gradient</b><code>--tmx-grad</code><i>Wordmarks, short headlines</i></div></div>
+      <div class="sg-swatch"><div class="chip" style="background:linear-gradient(135deg,#32b44a,#4068b1)"></div><div class="meta"><b>UI gradient</b><code>--tmx-grad-ui</code><i>Hex borders, UI strokes</i></div></div>
+    </div>
+    <div class="sg-note">Accessibility (WCAG 2.1 AA on #0A0A0A): body text never below <code>rgba(255,255,255,0.6)</code> (7.3:1). #0063FF and #4068B1 fail at normal size — use them for large/bold text and icons only; small blue links use <code>--tmx-blue-a11y</code>.</div>
+  </div>
+</section>
+
+<!-- ============ 03 TYPOGRAPHY ============ -->
+<section class="sg-section" id="type">
+  <div class="sg-wrap">
+    <div class="tmx-kicker">03 · Branding — Typography</div>
+    <h2 class="tmx-h1">Type families</h2>
+    <p class="tmx-body">Three families, never more. Load them once from Google Fonts (link in this page's <code style="font-family:var(--tmx-font-mono)">&lt;head&gt;</code>); the tokens <code style="font-family:var(--tmx-font-mono)">--tmx-font-sans / -disp / -mono</code> carry the fallback stacks.</p>
+
+    <div style="margin-top:36px">
+      <div class="sg-specimen">
+        <div class="name"><b style="font-family:var(--tmx-font-sans)">Inter</b><code>--tmx-font-sans · weights 400 / 500 / 600 / 700 / 800 / 900</code></div>
+        <div class="aa" style="font-family:var(--tmx-font-sans);font-weight:800">AaBbCcDdEeFfGg 0123456789</div>
+        <div class="weights" style="font-family:var(--tmx-font-sans)"><span style="font-weight:400">Regular</span><span style="font-weight:500">Medium</span><span style="font-weight:600">Semibold</span><span style="font-weight:700">Bold</span><span style="font-weight:800">Extrabold</span><span style="font-weight:900">Black</span></div>
+        <p class="role">The workhorse. Headlines at 800–900 with tight tracking (−0.02 to −0.03em); body text at 400–500.</p>
+      </div>
+      <div class="sg-specimen">
+        <div class="name"><b style="font-family:var(--tmx-font-disp)">Space Grotesk</b><code>--tmx-font-disp · weights 500 / 600 / 700</code></div>
+        <div class="aa" style="font-family:var(--tmx-font-disp);font-weight:700">AaBbCcDdEeFfGg 0123456789</div>
+        <div class="weights" style="font-family:var(--tmx-font-disp)"><span style="font-weight:500">Medium</span><span style="font-weight:600">Semibold</span><span style="font-weight:700">Bold</span></div>
+        <p class="role">The signal. Navigation, buttons, subheads (.tmx-h3) — the angular tech voice of the brand.</p>
+      </div>
+      <div class="sg-specimen">
+        <div class="name"><b style="font-family:var(--tmx-font-mono)">JetBrains Mono</b><code>--tmx-font-mono · weights 400 / 500 / 700</code></div>
+        <div class="aa" style="font-family:var(--tmx-font-mono);font-weight:500">AaBbCcDdEeFfGg 0123456789</div>
+        <div class="weights" style="font-family:var(--tmx-font-mono)"><span style="font-weight:400">Regular</span><span style="font-weight:500">Medium</span><span style="font-weight:700">Bold</span></div>
+        <p class="role">The label. Kickers, dates, counters, metadata — always uppercase with wide tracking (0.15–0.22em).</p>
+      </div>
+    </div>
+
+    <h3 class="tmx-h3" style="margin-top:56px">Type scale — sizes &amp; headings</h3>
+    <p class="tmx-body">Every heading level and text size in the system. Sizes are fluid (<code style="font-family:var(--tmx-font-mono)">clamp()</code>): the range below is mobile → desktop.</p>
+    <div class="sg-demo">
+      <div class="sg-type-row"><code>.tmx-display · Inter 900 · 40→72px / 0.95</code><span class="tmx-display">Casa TechMex</span></div>
+      <div class="sg-type-row"><code>.tmx-h1 · Inter 800 · 30→48px / 1.1</code><span class="tmx-h1">Mexican Innovation</span></div>
+      <div class="sg-type-row"><code>.tmx-h2 · Inter 700 · 26→36px / 1.15</code><span class="tmx-h2">What is Casa TechMex?</span></div>
+      <div class="sg-type-row"><code>.tmx-h3 · Sp. Grotesk 700 · 18→24px / 1.3</code><span class="tmx-h3">Our Community</span></div>
+      <div class="sg-type-row"><code>.tmx-body · Inter 400 · 16px / 1.6</code><span class="tmx-body">Mexican innovation doesn't start or end in software.</span></div>
+      <div class="sg-type-row"><code>.tmx-small · Inter 400 · 13px / 1.6</code><span class="tmx-small">Secondary text in cards and footers.</span></div>
+      <div class="sg-type-row"><code>.tmx-kicker · Mono 500 · 13px · caps</code><span class="tmx-kicker">Why here, why now</span></div>
+      <div class="sg-type-row"><code>.tmx-grad-text · headline modifier</code><span class="tmx-h2 tmx-grad-text">Austin's Tech Ecosystem</span></div>
+    </div>
+    <div class="sg-note">Section pattern: kicker → headline → subtitle at 60–72% white. Gradient text is for short headlines only, never paragraphs. Numbers always <code>font-variant-numeric: tabular-nums</code>.</div>
+  </div>
+</section>
+
+<!-- ============ 04 BUTTONS ============ -->
+<section class="sg-section" id="buttons">
+  <div class="sg-wrap">
+    <div class="tmx-kicker">04 · Buttons</div>
+    <h2 class="tmx-h1">Double-line buttons</h2>
+    <p class="tmx-body">A floating accent bar above the button quotes the wordmark's double line; on hover it fills with the gradient, left to right. Square corners always. Hover them:</p>
+    <div class="sg-demo center" data-snippet>
+      <a class="tmx-btn" href="#">Register</a>
+      <a class="tmx-btn tmx-btn--outline" href="#">Learn more</a>
+      <a class="tmx-btn tmx-glow" href="#">CTA with glow</a>
+    </div>
+    <details class="sg-code"><summary>▸ View code</summary><button class="sg-copy">COPY</button><pre></pre></details>
+  </div>
+</section>
+
+<!-- ============ 05 HEXAGONS ============ -->
+<section class="sg-section" id="hex">
+  <div class="sg-wrap">
+    <div class="tmx-kicker">05 · Hexagons</div>
+    <h2 class="tmx-h1">The hexagon</h2>
+    <p class="tmx-body">The brand's modular unit, inherited from the logo's circuit nodes. 300×346 point-up geometry, subtle border at rest; on hover a gradient light travels the border (1.5s) while corner nodes light in sequence. Sizes: <code style="font-family:var(--tmx-font-mono)">--sm --md --lg --xl</code>. The hexagon grows to fit the text — never shrink the text. Hover it:</p>
+
+    <div class="sg-demo center" data-snippet>
+      <div class="tmx-hex tmx-hex--md">
+        <svg viewBox="0 0 300 346">
+          <path class="hex-bg"     d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/>
+          <path class="hex-border" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/>
+          <path class="hex-hover"  d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/>
+          <circle class="hex-node" cx="150" cy="3" r="2"/><circle class="hex-node" cx="293" cy="78" r="2"/>
+          <circle class="hex-node" cx="293" cy="268" r="2"/><circle class="hex-node" cx="150" cy="343" r="2"/>
+          <circle class="hex-node" cx="7" cy="268" r="2"/><circle class="hex-node" cx="7" cy="78" r="2"/>
+        </svg>
+        <div class="hex-content">
+          <svg class="hex-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg>
+          <h3>Connect</h3>
+          <p>Bridge Mexican tech talent and Austin's innovation ecosystem.</p>
+        </div>
+      </div>
+    </div>
+    <details class="sg-code"><summary>▸ View code</summary><button class="sg-copy">COPY</button><pre></pre></details>
+
+    <h3 class="tmx-h3" style="margin-top:56px">Stat hex — animated counter</h3>
+    <p class="tmx-body">Gradient number counts up when it enters the viewport (<code style="font-family:var(--tmx-font-mono)">data-count</code> + <code style="font-family:var(--tmx-font-mono)">js/techmex.js</code>).</p>
+    <div class="sg-demo center" data-snippet>
+      <div class="tmx-hex tmx-hex--md">
+        <svg viewBox="0 0 300 346">
+          <path class="hex-bg"     d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/>
+          <path class="hex-border" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/>
+          <path class="hex-hover"  d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/>
+          <circle class="hex-node" cx="150" cy="3" r="2"/><circle class="hex-node" cx="293" cy="78" r="2"/>
+          <circle class="hex-node" cx="293" cy="268" r="2"/><circle class="hex-node" cx="150" cy="343" r="2"/>
+          <circle class="hex-node" cx="7" cy="268" r="2"/><circle class="hex-node" cx="7" cy="78" r="2"/>
+        </svg>
+        <div class="hex-content">
+          <div class="hex-value"><span data-count="130">0</span>+</div>
+          <div class="hex-label">Members</div>
+        </div>
+      </div>
+      <div class="tmx-hex tmx-hex--md">
+        <svg viewBox="0 0 300 346">
+          <path class="hex-bg"     d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/>
+          <path class="hex-border" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/>
+          <path class="hex-hover"  d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/>
+          <circle class="hex-node" cx="150" cy="3" r="2"/><circle class="hex-node" cx="293" cy="78" r="2"/>
+          <circle class="hex-node" cx="293" cy="268" r="2"/><circle class="hex-node" cx="150" cy="343" r="2"/>
+          <circle class="hex-node" cx="7" cy="268" r="2"/><circle class="hex-node" cx="7" cy="78" r="2"/>
+        </svg>
+        <div class="hex-content">
+          <div class="hex-value"><span data-count="350">0</span>+</div>
+          <div class="hex-label">Attendees</div>
+        </div>
+      </div>
+    </div>
+    <details class="sg-code"><summary>▸ View code</summary><button class="sg-copy">COPY</button><pre></pre></details>
+
+    <h3 class="tmx-h3" style="margin-top:56px">Honeycomb formation</h3>
+    <p class="tmx-body">Alternate row counts (3-2-3, 2-3-2, 4-3…); rows nest with a negative top margin and center themselves. Match <code style="font-family:var(--tmx-font-mono)">--hex-overlap</code> to the hex size (modifiers <code style="font-family:var(--tmx-font-mono)">--md --lg --xl</code>; sm is the default) and keep the widest row inside your container (3 × md ≈ 950px).</p>
+    <div class="sg-demo" data-snippet>
+      <div class="tmx-honeycomb">
+        <div class="tmx-honeycomb__row">
+          <div class="tmx-hex tmx-hex--sm">
+            <svg viewBox="0 0 300 346"><path class="hex-bg" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><path class="hex-border" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><path class="hex-hover" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><circle class="hex-node" cx="150" cy="3" r="2"/><circle class="hex-node" cx="293" cy="78" r="2"/><circle class="hex-node" cx="293" cy="268" r="2"/><circle class="hex-node" cx="150" cy="343" r="2"/><circle class="hex-node" cx="7" cy="268" r="2"/><circle class="hex-node" cx="7" cy="78" r="2"/></svg>
+            <div class="hex-content"><h3>Talks</h3></div>
+          </div>
+          <div class="tmx-hex tmx-hex--sm">
+            <svg viewBox="0 0 300 346"><path class="hex-bg" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><path class="hex-border" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><path class="hex-hover" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><circle class="hex-node" cx="150" cy="3" r="2"/><circle class="hex-node" cx="293" cy="78" r="2"/><circle class="hex-node" cx="293" cy="268" r="2"/><circle class="hex-node" cx="150" cy="343" r="2"/><circle class="hex-node" cx="7" cy="268" r="2"/><circle class="hex-node" cx="7" cy="78" r="2"/></svg>
+            <div class="hex-content"><h3>Pitch</h3></div>
+          </div>
+          <div class="tmx-hex tmx-hex--sm">
+            <svg viewBox="0 0 300 346"><path class="hex-bg" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><path class="hex-border" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><path class="hex-hover" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><circle class="hex-node" cx="150" cy="3" r="2"/><circle class="hex-node" cx="293" cy="78" r="2"/><circle class="hex-node" cx="293" cy="268" r="2"/><circle class="hex-node" cx="150" cy="343" r="2"/><circle class="hex-node" cx="7" cy="268" r="2"/><circle class="hex-node" cx="7" cy="78" r="2"/></svg>
+            <div class="hex-content"><h3>Expo</h3></div>
+          </div>
+        </div>
+        <div class="tmx-honeycomb__row">
+          <div class="tmx-hex tmx-hex--sm">
+            <svg viewBox="0 0 300 346"><path class="hex-bg" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><path class="hex-border" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><path class="hex-hover" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><circle class="hex-node" cx="150" cy="3" r="2"/><circle class="hex-node" cx="293" cy="78" r="2"/><circle class="hex-node" cx="293" cy="268" r="2"/><circle class="hex-node" cx="150" cy="343" r="2"/><circle class="hex-node" cx="7" cy="268" r="2"/><circle class="hex-node" cx="7" cy="78" r="2"/></svg>
+            <div class="hex-content"><h3>Music</h3></div>
+          </div>
+          <div class="tmx-hex tmx-hex--sm">
+            <svg viewBox="0 0 300 346"><path class="hex-bg" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><path class="hex-border" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><path class="hex-hover" d="M150 3 L293 78 L293 268 L150 343 L7 268 L7 78 Z"/><circle class="hex-node" cx="150" cy="3" r="2"/><circle class="hex-node" cx="293" cy="78" r="2"/><circle class="hex-node" cx="293" cy="268" r="2"/><circle class="hex-node" cx="150" cy="343" r="2"/><circle class="hex-node" cx="7" cy="268" r="2"/><circle class="hex-node" cx="7" cy="78" r="2"/></svg>
+            <div class="hex-content"><h3>Food</h3></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <details class="sg-code"><summary>▸ View code</summary><button class="sg-copy">COPY</button><pre></pre></details>
+
+    <h3 class="tmx-h3" style="margin-top:56px">Countdown cells</h3>
+    <p class="tmx-body">Small flat hex cells with mono tabular digits — live countdown to Casa TechMex 2026 (Oct 29, 2026 · <code style="font-family:var(--tmx-font-mono)">js/techmex.js</code>).</p>
+    <div class="sg-demo center" data-snippet>
+      <div style="display:flex;gap:10px" id="tmx-countdown" data-target="2026-10-29T09:00:00-05:00">
+        <div class="tmx-count"><svg viewBox="0 0 80 92"><path d="M40 2 L76 22 L76 70 L40 90 L4 70 L4 22 Z" stroke="rgba(50,180,74,0.25)" stroke-width="1.5" fill="rgba(50,180,74,0.03)"/><circle cx="40" cy="2" r="2" fill="#32b44a" opacity="0.4"/><circle cx="40" cy="90" r="2" fill="#4068b1" opacity="0.4"/></svg><div class="cnt"><b data-unit="d">00</b><span>Days</span></div></div>
+        <div class="tmx-count"><svg viewBox="0 0 80 92"><path d="M40 2 L76 22 L76 70 L40 90 L4 70 L4 22 Z" stroke="rgba(50,180,74,0.25)" stroke-width="1.5" fill="rgba(50,180,74,0.03)"/><circle cx="40" cy="2" r="2" fill="#32b44a" opacity="0.4"/><circle cx="40" cy="90" r="2" fill="#4068b1" opacity="0.4"/></svg><div class="cnt"><b data-unit="h">00</b><span>Hours</span></div></div>
+        <div class="tmx-count"><svg viewBox="0 0 80 92"><path d="M40 2 L76 22 L76 70 L40 90 L4 70 L4 22 Z" stroke="rgba(50,180,74,0.25)" stroke-width="1.5" fill="rgba(50,180,74,0.03)"/><circle cx="40" cy="2" r="2" fill="#32b44a" opacity="0.4"/><circle cx="40" cy="90" r="2" fill="#4068b1" opacity="0.4"/></svg><div class="cnt"><b data-unit="m">00</b><span>Min</span></div></div>
+        <div class="tmx-count"><svg viewBox="0 0 80 92"><path d="M40 2 L76 22 L76 70 L40 90 L4 70 L4 22 Z" stroke="rgba(50,180,74,0.25)" stroke-width="1.5" fill="rgba(50,180,74,0.03)"/><circle cx="40" cy="2" r="2" fill="#32b44a" opacity="0.4"/><circle cx="40" cy="90" r="2" fill="#4068b1" opacity="0.4"/></svg><div class="cnt"><b data-unit="s">00</b><span>Sec</span></div></div>
+      </div>
+    </div>
+    <details class="sg-code"><summary>▸ View code</summary><button class="sg-copy">COPY</button><pre></pre></details>
+  </div>
+</section>
+
+<!-- ============ 06 CARDS ============ -->
+<section class="sg-section" id="cards">
+  <div class="sg-wrap">
+    <div class="tmx-kicker">06 · Cards</div>
+    <h2 class="tmx-h1">Cards</h2>
+    <p class="tmx-body">Square corners, 10% white border, colored top accent, #161616–#202020 surfaces. Uniform height per row; hover shifts the border to green. Glass and animated-gradient-border variants for special moments.</p>
+    <div class="sg-demo" data-snippet style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+      <div class="tmx-card">
+        <div class="tmx-kicker">For attendees</div>
+        <h3>You don't need to work in tech.</h3>
+        <p>Standard card: white/10 border, green top accent, hover border to green/40.</p>
+      </div>
+      <div class="tmx-glass">
+        <div class="tmx-kicker" style="color:var(--tmx-cyan)">Glass card</div>
+        <h3 style="margin-top:10px;font:700 18px/1.35 var(--tmx-font-sans)">Glassmorphism</h3>
+        <p style="margin-top:8px;font-size:14px;color:rgba(255,255,255,0.62)">60% gray + 12px backdrop blur. Use over imagery or gradients.</p>
+      </div>
+      <div class="tmx-grad-border">
+        <div class="tmx-kicker" style="color:var(--tmx-green)">Featured</div>
+        <h3 style="margin-top:10px;font:700 18px/1.35 var(--tmx-font-sans)">Animated gradient border</h3>
+        <p style="margin-top:8px;font-size:14px;color:rgba(255,255,255,0.62)">Conic gradient rotating via <code style="font-family:var(--tmx-font-mono);font-size:12px">@property</code>. Reserve for one hero element.</p>
+      </div>
+    </div>
+    <details class="sg-code"><summary>▸ View code</summary><button class="sg-copy">COPY</button><pre></pre></details>
+  </div>
+</section>
+
+<!-- ============ 07 GRAPHIC DETAILS ============ -->
+<section class="sg-section" id="details">
+  <div class="sg-wrap">
+    <div class="tmx-kicker">07 · Graphic details</div>
+    <h2 class="tmx-h1">Circuits, steps &amp; texture</h2>
+    <p class="tmx-body">The supporting cast: L-shaped circuit corners with a node at the vertex (green top-left, blue bottom-right), stepped section dividers that quote the pyramid, and the fractal-noise grain already applied to this page's background via <code style="font-family:var(--tmx-font-mono)">body::before</code>. Zero rounded corners anywhere — the only curve is the node circle.</p>
+    <div class="sg-demo" data-snippet>
+      <div style="position:relative;border:1px solid rgba(255,255,255,0.1);background:#111;padding:44px;max-width:520px;margin:0 auto">
+        <svg class="tmx-corner" width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <path d="M4 52 L4 4 L52 4" stroke="rgba(50,180,74,0.5)" stroke-width="1.5"/><circle cx="4" cy="4" r="3" fill="#32b44a"/>
+        </svg>
+        <svg class="tmx-corner tmx-corner--br" width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <path d="M4 52 L4 4 L52 4" stroke="rgba(64,104,177,0.5)" stroke-width="1.5"/><circle cx="4" cy="4" r="3" fill="#4068b1"/>
+        </svg>
+        <p class="tmx-small" style="text-align:center">Frame with circuit corners</p>
+      </div>
+      <svg class="tmx-steps" viewBox="0 0 1440 24" preserveAspectRatio="none" style="margin-top:40px;height:24px">
+        <defs><linearGradient id="tmx-step-grad" x1="0" y1="0" x2="1440" y2="0"><stop offset="0" stop-color="#32b44a" stop-opacity="0.5"/><stop offset="1" stop-color="#4068b1" stop-opacity="0.5"/></linearGradient></defs>
+        <path d="M0 22 L360 22 L360 14 L720 14 L720 8 L1080 8 L1080 2 L1440 2" stroke="url(#tmx-step-grad)" stroke-width="1" fill="none"/>
+      </svg>
+      <p class="tmx-small" style="text-align:center;margin-top:8px">Stepped divider — section transitions, never waves</p>
+    </div>
+    <details class="sg-code"><summary>▸ View code</summary><button class="sg-copy">COPY</button><pre></pre></details>
+  </div>
+</section>
+
+<!-- ============ 08 FORMS ============ -->
+<section class="sg-section" id="forms">
+  <div class="sg-wrap">
+    <div class="tmx-kicker">08 · Forms</div>
+    <h2 class="tmx-h1">Newsletter row</h2>
+    <p class="tmx-body">Square inputs on 5% white with 10% border; focus ring in Logo Green. The submit button is the standard double-line button. On the live site this posts to <code style="font-family:var(--tmx-font-mono)">/api/newsletter</code> (Brevo).</p>
+    <div class="sg-demo" data-snippet>
+      <form style="display:flex;gap:8px;align-items:flex-end;max-width:460px;margin:0 auto" onsubmit="return false">
+        <input class="tmx-input" type="email" placeholder="your@email.com" style="align-self:stretch;height:auto">
+        <button class="tmx-btn" type="submit" style="flex-shrink:0">Subscribe</button>
+      </form>
+    </div>
+    <details class="sg-code"><summary>▸ View code</summary><button class="sg-copy">COPY</button><pre></pre></details>
+  </div>
+</section>
+
+<!-- ============ FOOTER (pattern) ============ -->
+<footer class="sg-footer">
+  <div class="sg-wrap">
+    <svg class="tmx-steps" viewBox="0 0 1440 24" preserveAspectRatio="none" style="height:24px;margin-bottom:32px">
+      <path d="M0 22 L360 22 L360 14 L720 14 L720 8 L1080 8 L1080 2 L1440 2" stroke="url(#tmx-step-grad)" stroke-width="1" fill="none"/>
+    </svg>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center">
+      <div class="sg-logo"><img src="images/techmex-logo-condensed.svg" alt="TechMex Austin"><small>AUSTIN</small></div>
+      <p class="tmx-small" style="font-family:var(--tmx-font-mono);font-size:11px">© 2026 TechMex Austin · techmexaustin.org · Design System v1.1</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Portable component behavior (counters + countdown) -->
+<script src="js/techmex.js"></script>
+<!-- Style-guide chrome (snippet viewer) — do NOT copy -->
+<script src="js/styleguide.js"></script>
+</body>
+</html>
